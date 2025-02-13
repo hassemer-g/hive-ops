@@ -712,7 +712,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (signWithTwoOwnerKeysExecRec.checked) {
             
             const sortedPublicKeys = [previousPublicOwnerKey1, previousPublicOwnerKey2]
-                .filter(Boolean)
+                .filter(Boolean) 
                 .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
 
             recentOwnerAuthority = {
