@@ -177,6 +177,7 @@
         }
     </style>
     <script>
+
 document.addEventListener("DOMContentLoaded", () => {
     const client = new dhive.Client("https://api.hive.blog");
 
@@ -233,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     
+    
     function validateAccountNameStructure(accountName) {
         const accountNameRegex = /^[a-z](([a-z0-9-]+)?[a-z0-9])?(\.[a-z](([a-z0-9-]+)?[a-z0-9])?)*$/;
         
@@ -273,6 +275,9 @@ document.addEventListener("DOMContentLoaded", () => {
     accountNameExecRec.addEventListener("input", () => validateAccountInput(accountNameExecRec, submitButtonExecRec));
 
 
+    
+    /
+    
     
     function validateGovernanceProxyTool() {
         const accountName = accountNameGov.value.trim();
@@ -338,13 +343,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     
+    /
+    
+    
     function validateChangeRecoveryTool() {
         if (!accountNameChgRec || !newRecoveryAccountChgRec || !privateOwnerKey1ChgRec || !submitButtonChgRec) return;
 
         const accountName = accountNameChgRec.value.trim();
         const newRecoveryAccount = newRecoveryAccountChgRec.value.trim();
         const privateOwnerKey1 = privateOwnerKey1ChgRec.value.trim();
-        const privateOwnerKey2 = privateOwnerKey2ChgRec?.value.trim() || "";
+        const privateOwnerKey2 = privateOwnerKey2ChgRec?.value.trim() || ""; 
 
         
         const isAccountNameValidChgRec = accountName && validateAccountNameStructure(accountName);
@@ -377,7 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (secondPrivateKeyGroupChgRec) {
             secondPrivateKeyGroupChgRec.style.display = signWithTwoOwnerKeysChgRec.checked ? "block" : "none";
         }
-        validateChangeRecoveryTool();
+        validateChangeRecoveryTool(); 
     });
 
     
@@ -390,7 +398,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const accountName = accountNameChgRec.value.trim();
         const newRecoveryAccount = newRecoveryAccountChgRec.value.trim();
         const privateOwnerKey1 = privateOwnerKey1ChgRec.value.trim();
-        const privateOwnerKey2 = privateOwnerKey2ChgRec?.value.trim() || "";
+        const privateOwnerKey2 = privateOwnerKey2ChgRec?.value.trim() || ""; 
 
         const op = [
             "change_recovery_account",
@@ -427,18 +435,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     
+    /
+    
+    
     function validateAccountUpdateForm() {
         if (!accountNameUpd || !privateOwnerKey1Upd || !newPublicOwnerKey1Upd || !submitButtonUpd) return;
 
         const accountName = accountNameUpd.value.trim();
         const newPublicOwnerKey1 = newPublicOwnerKey1Upd.value.trim();
-        const newPublicOwnerKey2 = newPublicOwnerKey2Upd?.value.trim() || "";
+        const newPublicOwnerKey2 = newPublicOwnerKey2Upd?.value.trim() || ""; 
         const privateOwnerKey1 = privateOwnerKey1Upd.value.trim();
-        const privateOwnerKey2 = privateOwnerKey2Upd?.value.trim() || "";
+        const privateOwnerKey2 = privateOwnerKey2Upd?.value.trim() || ""; 
 
         
         const allKeysFilledUpd = [newPublicActiveKeyUpd, newPublicPostingKeyUpd, newPublicMemoKeyUpd].every(
-            (input) => input?.value.trim() !== ""
+            (input) => input?.value.trim() !== "" 
         );
 
         
@@ -449,12 +460,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         
         if (useTwoPublicOwnerKeysUpd.checked) {
-            const ownerKeys = [newPublicOwnerKey1, newPublicOwnerKey2].filter(Boolean);
+            const ownerKeys = [newPublicOwnerKey1, newPublicOwnerKey2].filter(Boolean); 
 
             
             isValid = isValid && ownerKeys.length === 2 && newPublicOwnerKey1 !== newPublicOwnerKey2;
         } else {
-            isValid = isValid && newPublicOwnerKey1 !== "";
+            isValid = isValid && newPublicOwnerKey1 !== ""; 
         }
 
         
@@ -472,7 +483,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (secondPublicOwnerKeyGroupUpd) {
                 secondPublicOwnerKeyGroupUpd.style.display = useTwoPublicOwnerKeysUpd.checked ? "block" : "none";
             }
-            validateAccountUpdateForm();
+            validateAccountUpdateForm(); 
         });
     }
 
@@ -482,7 +493,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (secondPrivateKeyGroupUpd) {
                 secondPrivateKeyGroupUpd.style.display = signWithTwoOwnerKeysUpd.checked ? "block" : "none";
             }
-            validateAccountUpdateForm();
+            validateAccountUpdateForm(); 
         });
     }
 
@@ -507,9 +518,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const accountName = accountNameUpd.value.trim();
         const privateOwnerKey1 = privateOwnerKey1Upd.value.trim();
-        const privateOwnerKey2 = privateOwnerKey2Upd?.value.trim() || "";
+        const privateOwnerKey2 = privateOwnerKey2Upd?.value.trim() || ""; 
         const newPublicOwnerKey1 = newPublicOwnerKey1Upd.value.trim();
-        const newPublicOwnerKey2 = newPublicOwnerKey2Upd?.value.trim() || "";
+        const newPublicOwnerKey2 = newPublicOwnerKey2Upd?.value.trim() || ""; 
         const newPublicActiveKey = newPublicActiveKeyUpd.value.trim();
         const newPublicPostingKey = newPublicPostingKeyUpd.value.trim();
         const newPublicMemoKey = newPublicMemoKeyUpd.value.trim();
@@ -562,6 +573,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    
+    /
+    
     
     function validateRequestRecoveryTool() {
         if (!accountNameReqRec || !accountToBeRecoveredReqRec || !newPublicOwnerKeyReqRec || !privateActiveKeyReqRec || !submitButtonReqRec) return;
@@ -639,13 +653,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     
+    /
+    
+    
     function validateExecuteRecoveryTool() {
         if (!accountNameExecRec || !newPrivateOwnerKeyExecRec || !previousPrivateOwnerKey1ExecRec || !submitButtonExecRec) return;
 
         const accountName = accountNameExecRec.value.trim();
         const newPrivateOwnerKey = newPrivateOwnerKeyExecRec.value.trim();
         const previousPrivateOwnerKey1 = previousPrivateOwnerKey1ExecRec.value.trim();
-        const previousPrivateOwnerKey2 = previousPrivateOwnerKey2ExecRec?.value.trim() || "";
+        const previousPrivateOwnerKey2 = previousPrivateOwnerKey2ExecRec?.value.trim() || ""; 
 
         
         const isAccountNameValidExecRec = accountName && validateAccountNameStructure(accountName);
@@ -669,7 +686,7 @@ document.addEventListener("DOMContentLoaded", () => {
         signWithTwoOwnerKeysExecRec.addEventListener("change", () => {
             const showExtraFields = signWithTwoOwnerKeysExecRec.checked;
             secondPrivateKeyGroupExecRec.style.display = showExtraFields ? "block" : "none";
-            validateExecuteRecoveryTool();
+            validateExecuteRecoveryTool(); 
         });
     }
 
@@ -693,14 +710,28 @@ document.addEventListener("DOMContentLoaded", () => {
         const accountName = accountNameExecRec.value.trim();
         const newPrivateOwnerKey = newPrivateOwnerKeyExecRec.value.trim();
         const previousPrivateOwnerKey1 = previousPrivateOwnerKey1ExecRec.value.trim();
-        const previousPrivateOwnerKey2 = previousPrivateOwnerKey2ExecRec?.value.trim() || "";
+        const previousPrivateOwnerKey2 = previousPrivateOwnerKey2ExecRec?.value.trim() || ""; 
 
-        
-        const newPublicOwnerKey = dhive.PrivateKey.fromString(newPrivateOwnerKey).createPublic().toString();
-        const previousPublicOwnerKey1 = dhive.PrivateKey.fromString(previousPrivateOwnerKey1).createPublic().toString();
-        const previousPublicOwnerKey2 = previousPrivateOwnerKey2
-            ? dhive.PrivateKey.fromString(previousPrivateOwnerKey2).createPublic().toString()
-            : "";
+        let newPublicOwnerKey, previousPublicOwnerKey1, previousPublicOwnerKey2;
+        try {
+            
+            newPublicOwnerKey = dhive.PrivateKey.fromString(newPrivateOwnerKey).createPublic().toString();
+            previousPublicOwnerKey1 = dhive.PrivateKey.fromString(previousPrivateOwnerKey1).createPublic().toString();
+            previousPublicOwnerKey2 = previousPrivateOwnerKey2
+                ? dhive.PrivateKey.fromString(previousPrivateOwnerKey2).createPublic().toString()
+                : null;
+
+        } catch (error) {
+            resultMessageExecRec.textContent = "Invalid private key entered.";
+            resultMessageExecRec.style.color = "red";
+
+            
+            if (newPrivateOwnerKeyExecRec) newPrivateOwnerKeyExecRec.value = "";
+            if (previousPrivateOwnerKey1ExecRec) previousPrivateOwnerKey1ExecRec.value = "";
+            if (previousPrivateOwnerKey2ExecRec) previousPrivateOwnerKey2ExecRec.value = "";
+
+            return; 
+        }
 
         const newOwnerAuthority = {
             account_auths: [],
@@ -741,6 +772,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         ];
 
+        if (!newPublicOwnerKey || !previousPublicOwnerKey1 || (signWithTwoOwnerKeysExecRec.checked && !previousPublicOwnerKey2)) {
+            resultMessageExecRec.textContent = "Failed to derive public keys.";
+            resultMessageExecRec.style.color = "red";
+
+            
+            if (newPrivateOwnerKeyExecRec) newPrivateOwnerKeyExecRec.value = "";
+            if (previousPrivateOwnerKey1ExecRec) previousPrivateOwnerKey1ExecRec.value = "";
+            if (previousPrivateOwnerKey2ExecRec) previousPrivateOwnerKey2ExecRec.value = "";
+
+            return;  
+        }
+
         try {
             const privateKeys = [
                 dhive.PrivateKey.fromString(newPrivateOwnerKey),
@@ -769,6 +812,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
 
 
 
@@ -873,12 +917,13 @@ function clearInputs() {
 
 
 
+
 function showPage(pageId) {
 
     
     if (pageId === "mainMenu") {
         if (typeof clearInputs === "function") {
-            clearInputs();
+            clearInputs(); 
         }
     }
 
@@ -893,6 +938,7 @@ function showPage(pageId) {
     
     document.getElementById(pageId).style.display = "block";
 }
+
 
     </script>
     <script>
@@ -931,7 +977,7 @@ function showPage(pageId) {
         </div>
         <div class="form-group">
             <label for="privateActiveKeyGov">Your Private Active Key:</label>
-            <input type="password" id="privateActiveKeyGov" placeholder="Private Active Key">
+            <input type="password" id="privateActiveKeyGov" placeholder="Private Active Key (5...)">
         </div>
         <button id="submitButtonGov" disabled>Submit Transaction</button>
         <p id="resultMessageGov"></p>
@@ -953,7 +999,7 @@ function showPage(pageId) {
         </div>
         <div class="form-group">
             <label for="privateOwnerKey1ChgRec">Your Private Owner Key:</label>
-            <input type="password" id="privateOwnerKey1ChgRec" placeholder="Private Owner Key">
+            <input type="password" id="privateOwnerKey1ChgRec" placeholder="Private Owner Key (5...)">
             <div class="checkbox-container">
                 <input type="checkbox" id="signWithTwoOwnerKeysChgRec">
                 <label for="signWithTwoOwnerKeysChgRec">Sign the transaction with two owner keys</label>
@@ -961,7 +1007,7 @@ function showPage(pageId) {
         </div>
         <div class="form-group" id="secondPrivateKeyGroupChgRec" style="display: none;">
             <label for="privateOwnerKey2ChgRec">Second Private Owner Key:</label>
-            <input type="password" id="privateOwnerKey2ChgRec" placeholder="Second Private Owner Key">
+            <input type="password" id="privateOwnerKey2ChgRec" placeholder="Second Private Owner Key (5...)">
         </div>
         <button id="submitButtonChgRec" disabled>Submit Transaction</button>
         <p id="resultMessageChgRec"></p>
@@ -972,14 +1018,14 @@ function showPage(pageId) {
     <div id="accountUpdateTool" class="hidden">
         <h1>Change Account Keys</h1>
         <p class="subtitle">This tool can be used to change your Hive account's keys</p>
-         <p class="subtitle">• Before using this tool, use my "<a href="https://hassemer-g.github.io/hivekeys/" target="_blank">Keys Tools</a>" to generate a random "Master Password" and derive your new keys</p>
+         <p class="subtitle">• Before using this tool, use my "<a href="https:
         <div class="form-group">
             <label for="accountNameUpd">Your Hive Account:</label>
             <input type="text" id="accountNameUpd" placeholder="E.g., youraccount">
         </div>
         <div class="form-group">
             <label for="newPublicOwnerKey1Upd">New Public Owner Key:</label>
-            <input type="text" id="newPublicOwnerKey1Upd" placeholder="Enter new public owner key">
+            <input type="text" id="newPublicOwnerKey1Upd" placeholder="New Public Owner Key (STM...)">
             <div class="checkbox-container">
                 <input type="checkbox" id="useTwoPublicOwnerKeysUpd">
                 <label for="useTwoPublicOwnerKeysUpd">Use two owner keys to compose owner authority</label>
@@ -987,23 +1033,23 @@ function showPage(pageId) {
         </div>
         <div class="form-group" id="secondPublicOwnerKeyGroupUpd" style="display: none;">
             <label for="newPublicOwnerKey2Upd">Second New Public Owner Key:</label>
-            <input type="text" id="newPublicOwnerKey2Upd" placeholder="Enter second new public owner key">
+            <input type="text" id="newPublicOwnerKey2Upd" placeholder="Second New Public Owner Key (STM...)">
         </div>
         <div class="form-group">
             <label for="newPublicActiveKeyUpd">New Public Active Key:</label>
-            <input type="text" id="newPublicActiveKeyUpd" placeholder="Enter new public active key">
+            <input type="text" id="newPublicActiveKeyUpd" placeholder="New Public Active Key (STM...)">
         </div>
         <div class="form-group">
             <label for="newPublicPostingKeyUpd">New Public Posting Key:</label>
-            <input type="text" id="newPublicPostingKeyUpd" placeholder="Enter new public posting key">
+            <input type="text" id="newPublicPostingKeyUpd" placeholder="New Public Posting Key (STM...)">
         </div>
         <div class="form-group">
             <label for="newPublicMemoKeyUpd">New Public Memo Key:</label>
-            <input type="text" id="newPublicMemoKeyUpd" placeholder="Enter new public memo key">
+            <input type="text" id="newPublicMemoKeyUpd" placeholder="New Public Memo Key (STM...)">
         </div>
         <div class="form-group">
             <label for="privateOwnerKey1Upd">Current Private Owner Key:</label>
-            <input type="password" id="privateOwnerKey1Upd" placeholder="Private Owner Key">
+            <input type="password" id="privateOwnerKey1Upd" placeholder="Private Owner Key (5...)">
             <div class="checkbox-container">
                 <input type="checkbox" id="signWithTwoOwnerKeysUpd">
                 <label for="signWithTwoOwnerKeysUpd">Sign the transaction with two owner keys</label>
@@ -1011,7 +1057,7 @@ function showPage(pageId) {
         </div>
         <div class="form-group" id="secondPrivateKeyGroupUpd" style="display: none;">
             <label for="privateOwnerKey2Upd">Second Private Owner Key:</label>
-            <input type="password" id="privateOwnerKey2Upd" placeholder="Second Private Owner Key">
+            <input type="password" id="privateOwnerKey2Upd" placeholder="Second Private Owner Key (5...)">
         </div>
         <button id="submitButtonUpd" disabled>Submit Transaction</button>
         <p id="resultMessageUpd"></p>
@@ -1033,11 +1079,11 @@ function showPage(pageId) {
         </div>
         <div class="form-group">
             <label for="newPublicOwnerKeyReqRec">New Public Owner Key:</label>
-            <input type="text" id="newPublicOwnerKeyReqRec" placeholder="New Public Owner Key">
+            <input type="text" id="newPublicOwnerKeyReqRec" placeholder="New Public Owner Key (STM...)">
         </div>
         <div class="form-group">
             <label for="privateActiveKeyReqRec">Your Private Active Key:</label>
-            <input type="password" id="privateActiveKeyReqRec" placeholder="Private Active Key">
+            <input type="password" id="privateActiveKeyReqRec" placeholder="Private Active Key (5...)">
         </div>
         <button id="submitButtonReqRec" disabled>Submit Transaction</button>
         <p id="resultMessageReqRec"></p>
@@ -1056,11 +1102,11 @@ function showPage(pageId) {
         </div>
         <div class="form-group">
             <label for="newPrivateOwnerKeyExecRec">New Private Owner Key:</label>
-            <input type="password" id="newPrivateOwnerKeyExecRec" placeholder="New Private Owner Key">
+            <input type="password" id="newPrivateOwnerKeyExecRec" placeholder="New Private Owner Key (5...)">
         </div>
         <div class="form-group">
             <label for="previousPrivateOwnerKey1ExecRec">Previous Private Owner Key:</label>
-            <input type="password" id="previousPrivateOwnerKey1ExecRec" placeholder="Previous Private Owner Key">
+            <input type="password" id="previousPrivateOwnerKey1ExecRec" placeholder="Previous Private Owner Key (5...)">
             <div class="checkbox-container">
                 <input type="checkbox" id="signWithTwoOwnerKeysExecRec">
                 <label for="signWithTwoOwnerKeysExecRec">The previous owner authority had two owner keys</label>
@@ -1068,7 +1114,7 @@ function showPage(pageId) {
         </div>
         <div class="form-group" id="secondPrivateKeyGroupExecRec" style="display: none;">
             <label for="previousPrivateOwnerKey2ExecRec">Second Previous Private Owner Key:</label>
-            <input type="password" id="previousPrivateOwnerKey2ExecRec" placeholder="Second Previous Private Owner Key">
+            <input type="password" id="previousPrivateOwnerKey2ExecRec" placeholder="Second Previous Private Owner Key (5...)">
         </div>
         <button id="submitButtonExecRec" disabled>Submit Transaction</button>
         <p id="resultMessageExecRec"></p>
