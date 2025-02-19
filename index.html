@@ -408,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // Fetch current account details to get the current posting_json_metadata
-            const result = await hive.api.getAccounts([accountName]);
+            const result = await client.database.getAccounts([accountName]);
 
             if (result && result.length > 0) {
                 const account = result[0];
@@ -717,6 +717,7 @@ function clearInputs() {
     const privateActiveKeyJMet = document.getElementById("privateActiveKeyJMet");
     const submitButtonJMet = document.getElementById("submitButtonJMet");
     const resultMessageJMet = document.getElementById("resultMessageJMet");
+    const editJsonMetadataContainer = document.getElementById("editJsonMetadataContainer");
 
     if (accountNameJMet) accountNameJMet.value = "";
     if (loadJsonMetadataButton) loadJsonMetadataButton.disabled = true;
@@ -725,6 +726,7 @@ function clearInputs() {
     if (privateActiveKeyJMet) privateActiveKeyJMet.value = "";
     if (submitButtonJMet) submitButtonJMet.disabled = true;
     if (resultMessageJMet) resultMessageJMet.textContent = "";
+    if (editJsonMetadataContainer) editJsonMetadataContainer.style.display = 'none';
 
     // Governance Proxy Tool
     const accountNameGov = document.getElementById("accountNameGov");
@@ -783,6 +785,7 @@ function showPage(pageId) {
 }
 
 
+
     </script>
 
 </head>
@@ -807,7 +810,7 @@ function showPage(pageId) {
             <label for="accountNameJMet">Your Hive Account:</label>
             <input type="text" id="accountNameJMet" placeholder="E.g., youraccount">
         </div>
-        <button class="btn btn-primary" type="button" id="loadJsonMetadataButton">Load Current JSON Metadata</button>
+        <button class="btn btn-primary" type="button" id="loadJsonMetadataButton" disabled style="background-color: grey;">Load Current JSON Metadata</button>
         <div id="editJsonMetadataContainer" style="display:none;">
             <hr>
             <p>Edit your account's JSON metadata:</p>
