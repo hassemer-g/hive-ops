@@ -11,14 +11,17 @@
             padding: 5%;
             box-sizing: border-box;
             line-height: 1.6;
-            max-width: 500px; /* Limit width for large screens */
+            max-width: 500px;
             text-align: center;
+            background-color: #121212;
+            color: #e0e0e0;
         }
 
         h1 {
             font-size: 1.8rem;
             text-align: center;
             margin-bottom: 5%;
+            color: #ffffff;
         }
 
         .hidden {
@@ -32,13 +35,13 @@
         .subtitle {
             text-align: center;
             font-size: 1rem;
-            color: black;
+            color: #b0b0b0;
             margin-bottom: 20px;
-            white-space: normal;  /* Ensures text wraps automatically */
+            white-space: normal;
             display: block;
         }
         .subtitle a {
-            color: green;
+            color: #4CAF50;
             text-decoration: none;
         }
 
@@ -54,15 +57,17 @@
             font-size: 1rem;
             padding: 3%;
             margin-top: 2%;
-            border: 1px solid #ccc;
+            border: 1px solid #333;
             border-radius: 5px;
             box-sizing: border-box;
+            background-color: #1e1e1e;
+            color: #ffffff;
         }
 
         input:focus {
             outline: none;
-            border-color: #007BFF;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
         }
 
         button {
@@ -78,11 +83,13 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+            background-color: #4CAF50;
+            color: #ffffff;
         }
 
         button:disabled {
-            background-color: grey;
-            color: white;
+            background-color: #555;
+            color: #ccc;
             cursor: not-allowed;
         }
 
@@ -104,95 +111,80 @@
             word-break: break-word;
             max-width: 100%;
             display: block;
-            padding: 2%;  /* Adjust padding based on screen size */
-            border-radius: 2%;  /* Make border radius scale with container size */
-            background-color: #f8f9fa;
+            padding: 2%;
+            border-radius: 2%;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
         }
 
         .warning-text {
             font-size: 0.8rem;
-            color: red;
+            color: #ff4444;
             margin-top: 2%;
         }
 
         .checkbox-container {
             display: flex;
-            flex-direction: row; /* Ensure horizontal alignment */
-            align-items: center; /* Align checkbox and text vertically */
-            justify-content: flex-start; /* Ensure everything stays left-aligned */
-            width: 100%; /* Full width */
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
             margin-top: 2%;
         }
 
         .checkbox-container input[type="checkbox"] {
             width: auto;
             height: auto;
-            margin: 0; /* Ensures proper alignment */
-            margin-right: 2%; /* Add spacing between checkbox and text */
-            flex-shrink: 0; /* Prevents checkbox from shrinking */
+            margin: 0;
+            margin-right: 2%;
+            flex-shrink: 0;
         }
 
         .checkbox-container label {
             font-size: 0.85rem;
             line-height: 1.2;
             text-align: left;
-            flex-grow: 1; /* Ensures text takes remaining space */
+            flex-grow: 1;
             display: inline-block;
-            white-space: normal; /* Ensure text wraps if necessary */
+            white-space: normal;
             width: 100%;
-            margin: 0; /* Ensure alignment */
+            margin: 0;
+            color: #e0e0e0;
         }
 
         .footer {
             text-align: center;
             margin-top: 5%;
             font-size: 0.9rem;
+            color: #b0b0b0;
         }
 
         .footer a {
-            color: green;
+            color: #4CAF50;
             text-decoration: none;
         }
 
-        #jsonMetadataEdit {
-            width: 100%; /* Ensures it takes up full available width */
-            min-height: 100px; /* Ensures the textarea has a minimum height */
-            max-height: 500px; /* Prevents the textarea from growing infinitely */
-            resize: vertical; /* Allows the user to manually resize the textarea vertically */
-            padding: 10px; /* Adds padding inside the textarea */
-            border: 1px solid #ccc; /* Adds a light border around the textarea */
-            border-radius: 5px; /* Rounds the corners of the border */
-            font-size: 14px; /* Improves text readability */
-            box-sizing: border-box; /* Ensures padding and border don't affect the width */
-            transition: border-color 0.3s ease; /* Smooth transition when focused */
+        .textarea-metadata {
+            width: 100%;
+            min-height: 100px;
+            max-height: 500px;
+            resize: vertical;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+            background-color: #1e1e1e;
+            color: #ffffff;
         }
 
-        /* On focus, change the border color */
-        #jsonMetadataEdit:focus {
-            border-color: #4CAF50; /* Green border on focus */
-            outline: none; /* Removes the default focus outline */
+        .textarea-metadata:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
         }
 
-        #postingJsonMetadataEdit {
-            width: 100%; /* Ensures it takes up full available width */
-            min-height: 100px; /* Ensures the textarea has a minimum height */
-            max-height: 500px; /* Prevents the textarea from growing infinitely */
-            resize: vertical; /* Allows the user to manually resize the textarea vertically */
-            padding: 10px; /* Adds padding inside the textarea */
-            border: 1px solid #ccc; /* Adds a light border around the textarea */
-            border-radius: 5px; /* Rounds the corners of the border */
-            font-size: 14px; /* Improves text readability */
-            box-sizing: border-box; /* Ensures padding and border don't affect the width */
-            transition: border-color 0.3s ease; /* Smooth transition when focused */
-        }
-
-        /* On focus, change the border color */
-        #postingJsonMetadataEdit:focus {
-            border-color: #4CAF50; /* Green border on focus */
-            outline: none; /* Removes the default focus outline */
-        }
-
-        /* Add responsive design to limit excessive width on larger screens */
         @media screen and (min-width: 768px) {
             body {
                 padding: 2%;
@@ -224,60 +216,52 @@
     
     <script>
 
+
 document.addEventListener("DOMContentLoaded", () => {
     const client = new dhive.Client("https://api.hive.blog");
 
-    // Edit JSON Metadata Tool
     const accountNameJMet = document.getElementById("accountNameJMet");
     const loadJsonMetadataButton = document.getElementById("loadJsonMetadataButton");
+    const editJsonMetadataContainer = document.getElementById("editJsonMetadataContainer");
     const jsonMetadataEdit = document.getElementById("jsonMetadataEdit");
     const postingJsonMetadataEdit = document.getElementById("postingJsonMetadataEdit");
     const useHiveKeychainJMet = document.getElementById("useHiveKeychainJMet");
-    const privateKeyLabelJMet = document.querySelector('label[for="privateActiveKeyJMet"]'); // Select the label
+    const privateActiveKeyJMetContainer = document.getElementById("privateActiveKeyJMetContainer");
     const privateActiveKeyJMet = document.getElementById("privateActiveKeyJMet");
     const submitButtonJMet = document.getElementById("submitButtonJMet");
     const resultMessageJMet = document.getElementById("resultMessageJMet");
-    const editJsonMetadataContainer = document.getElementById("editJsonMetadataContainer");
 
-    // Governance Proxy Tool
     const accountNameGov = document.getElementById("accountNameGov");
     const proxyAccountGov = document.getElementById("proxyAccountGov");
     const useHiveKeychainGov = document.getElementById("useHiveKeychainGov");
-    const privateKeyLabelGov = document.querySelector('label[for="privateActiveKeyGov"]'); // Select the label
+    const privateActiveKeyGovContainer = document.getElementById("privateActiveKeyGovContainer");
     const privateActiveKeyGov = document.getElementById("privateActiveKeyGov");
     const submitButtonGov = document.getElementById("submitButtonGov");
     const resultMessageGov = document.getElementById("resultMessageGov");
 
-    // Account Update Tool
     const accountNameUpd = document.getElementById("accountNameUpd");
     const newPublicActiveKeyUpd = document.getElementById("newPublicActiveKeyUpd");
     const newPublicPostingKeyUpd = document.getElementById("newPublicPostingKeyUpd");
     const newPublicMemoKeyUpd = document.getElementById("newPublicMemoKeyUpd");
     const useHiveKeychainUpd = document.getElementById("useHiveKeychainUpd");
-    const privateKeyLabelUpd = document.querySelector('label[for="privateActiveKeyUpd"]'); // Select the label
+    const privateActiveKeyUpdContainer = document.getElementById("privateActiveKeyUpdContainer");
     const privateActiveKeyUpd = document.getElementById("privateActiveKeyUpd");
     const submitButtonUpd = document.getElementById("submitButtonUpd");
     const resultMessageUpd = document.getElementById("resultMessageUpd");
 
-    // Request Recovery Tool
     const accountNameReqRec = document.getElementById("accountNameReqRec");
     const accountToBeRecoveredReqRec = document.getElementById("accountToBeRecoveredReqRec");
     const newPublicOwnerKeyReqRec = document.getElementById("newPublicOwnerKeyReqRec");
     const useHiveKeychainReqRec = document.getElementById("useHiveKeychainReqRec");
-    const privateKeyLabelReqRec = document.querySelector('label[for="privateActiveKeyReqRec"]'); // Select the label
+    const privateActiveKeyReqRecContainer = document.getElementById("privateActiveKeyReqRecContainer");
     const privateActiveKeyReqRec = document.getElementById("privateActiveKeyReqRec");
     const submitButtonReqRec = document.getElementById("submitButtonReqRec");
     const resultMessageReqRec = document.getElementById("resultMessageReqRec");
 
 
-    /*
-    // Validate Account Name Structure
-    */
     function validateAccountNameStructure(accountName) {
         const accountNameRegex = /^[a-z](([a-z0-9-]+)?[a-z0-9])?(\.[a-z](([a-z0-9-]+)?[a-z0-9])?)*$/;
-        // Check if dots are correctly positioned (at least 3 non-dot characters before & after each dot)
         const validDotPlacement = !accountName.includes(".") || accountName.split(".").every(part => part.length >= 3);
-        // Ensure a dot is NOT immediately followed by a hyphen or a number
         const noDotFollowedByHyphenOrNumber = !/\.[0-9-]/.test(accountName);
         return (
             accountName.length >= 3 &&
@@ -289,7 +273,6 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }
 
-    // Function to validate input and update UI
     function validateAccountInput(inputField, submitButton) {
         const accountName = inputField.value.trim();
         if (accountName === "") {
@@ -302,7 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.disabled = !correctNameFormat;
     }
 
-    // Attach event listeners for real-time validation
     accountNameGov.addEventListener("input", () => validateAccountInput(accountNameGov, submitButtonGov));
     proxyAccountGov.addEventListener("input", () => validateAccountInput(proxyAccountGov, submitButtonGov));
     accountNameUpd.addEventListener("input", () => validateAccountInput(accountNameUpd, submitButtonUpd));
@@ -314,41 +296,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /*
-    // EDIT JSON METADATA TOOL EXCLUSIVE CODE
-    */
-    // Function to toggle visibility of the private key input field
     function togglePrivateKeyInputVisibilityJMet() {
         if (useHiveKeychainJMet.checked) {
-            privateKeyLabelJMet.style.display = "none"; // Hide the label
-            privateActiveKeyJMet.style.display = "none"; // Hide the input field
-            privateActiveKeyJMet.value = ""; // Clear the private key input field
+            privateActiveKeyJMetContainer.style.display = "none";
+            privateActiveKeyJMet.value = "";
         } else {
-            privateKeyLabelJMet.style.display = "block"; // Show the label
-            privateActiveKeyJMet.style.display = "block"; // Show the input field
+            privateActiveKeyJMetContainer.style.display = "block";
         }
     }
 
-    // Function to enable the "loadJsonMetadataButton" button
     function enableLoadJsonMetadataButton() {
         if (!accountNameJMet || !loadJsonMetadataButton) return;
 
         const accountName = accountNameJMet.value.trim();
 
-        // Check if the accountName is valid
         const isValidAccount = validateAccountNameStructure(accountName);
 
-        // Enable the load button only if all conditions are met
         if (isValidAccount) {
             loadJsonMetadataButton.disabled = false;
-            loadJsonMetadataButton.style.backgroundColor = "green"; // Change to green when enabled
+            loadJsonMetadataButton.style.backgroundColor = "green";
         } else {
             loadJsonMetadataButton.disabled = true;
-            loadJsonMetadataButton.style.backgroundColor = ""; // Reset background color if not enabled
+            loadJsonMetadataButton.style.backgroundColor = "";
         }
     }
 
-    // Function to enable the "submitButtonJMet" button
     function enableSubmitButtonJMet() {
         if (!accountNameJMet || !submitButtonJMet) return;
 
@@ -356,51 +328,43 @@ document.addEventListener("DOMContentLoaded", () => {
         const privateActiveKey = privateActiveKeyJMet.value.trim();
         const useHiveKeychain = useHiveKeychainJMet.checked;
 
-        // Check if the accountName is valid
         const isValidAccount = validateAccountNameStructure(accountName);
 
-        // Enable the submit button only if all conditions are met
         if (isValidAccount && (privateActiveKey || useHiveKeychain)) {
             submitButtonJMet.disabled = false;
-            submitButtonJMet.style.backgroundColor = "green"; // Change to green when enabled
+            submitButtonJMet.style.backgroundColor = "green";
         } else {
             submitButtonJMet.disabled = true;
-            submitButtonJMet.style.backgroundColor = ""; // Reset background color if not enabled
+            submitButtonJMet.style.backgroundColor = "";
         }
     }
 
-    // Add event listener for the 'Use Hive Keychain' checkbox
     useHiveKeychainJMet.addEventListener("change", togglePrivateKeyInputVisibilityJMet);
     useHiveKeychainJMet.addEventListener("change", enableSubmitButtonJMet);
 
-    // Add event listeners to the input fields
     accountNameJMet.addEventListener("input", enableLoadJsonMetadataButton);
     accountNameJMet.addEventListener("input", enableSubmitButtonJMet);
     jsonMetadataEdit.addEventListener("input", enableSubmitButtonJMet);
     postingJsonMetadataEdit.addEventListener("input", enableSubmitButtonJMet);
     privateActiveKeyJMet.addEventListener("input", enableSubmitButtonJMet);
 
-    // Initial check to set the visibility when the page loads
     togglePrivateKeyInputVisibilityJMet();
 
-    // Initial validation on page load
     enableLoadJsonMetadataButton();
     enableSubmitButtonJMet();
 
-    // Function to automatically adjust the height of the textarea as content is typed
     jsonMetadataEdit.addEventListener("input", function () {
-        this.style.height = "auto"; // Reset height before resizing
-        this.style.height = (this.scrollHeight) + "px"; // Set the height to the scrollHeight (content height)
+        this.style.height = "auto";
+        this.style.height = (this.scrollHeight) + "px";
     });
 
-    // Function to automatically adjust the height of the textarea as content is typed
     postingJsonMetadataEdit.addEventListener("input", function () {
-        this.style.height = "auto"; // Reset height before resizing
-        this.style.height = (this.scrollHeight) + "px"; // Set the height to the scrollHeight (content height)
+        this.style.height = "auto";
+        this.style.height = (this.scrollHeight) + "px";
     });
 
     async function loadJsonMetadata() {
-        const accountName = accountNameJMet.value.trim(); // Get the input account name
+        const accountName = accountNameJMet.value.trim();
         if (!accountName) {
             resultMessageJMet.textContent = "Please enter a valid Hive account name.";
             resultMessageJMet.style.color = "red";
@@ -408,19 +372,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            // Use dhive to fetch account details
             const result = await client.database.getAccounts([accountName]);
 
             if (result && result.length > 0) {
                 const account = result[0];
-                const jsonMetadata = account.json_metadata || null; // Get the current metadata
-                const postingJsonMetadata = account.posting_json_metadata || null; // Get the current posting metadata
+                const jsonMetadata = account.json_metadata || null;
+                const postingJsonMetadata = account.posting_json_metadata || null;
 
-                // Populate the textareas with the current metadata
                 jsonMetadataEdit.value = jsonMetadata;
                 postingJsonMetadataEdit.value = postingJsonMetadata;
 
-                // Show the editing container
                 editJsonMetadataContainer.style.display = "block";
 
             } else {
@@ -437,8 +398,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const accountName = accountNameJMet.value.trim();
         const rawNewMetadata = jsonMetadataEdit.value.trim();
         const rawNewPostingMetadata = postingJsonMetadataEdit.value.trim();
-        const privateActiveKey = privateActiveKeyJMet.value.trim(); // Get the private key
-        const useKeychain = useHiveKeychainJMet.checked; // Check if Hive Keychain is being used
+        const privateActiveKey = privateActiveKeyJMet.value.trim();
+        const useHiveKeychain = useHiveKeychainJMet.checked;
 
         if (!accountName) {
             resultMessageJMet.textContent = "Please enter a valid account name.";
@@ -446,18 +407,16 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        if (!privateActiveKey && !useKeychain) {
+        if (!privateActiveKey && !useHiveKeychain) {
             resultMessageJMet.textContent = "Please enter a private active key, or use Hive Keychain.";
             resultMessageJMet.style.color = "red";
             return;
         }
 
         try {
-            // Prepare the metadatas
             const formattedJsonMetadata = rawNewMetadata ? JSON.stringify(JSON.parse(rawNewMetadata)) : "";
             const formattedPostingJsonMetadata = rawNewPostingMetadata ? JSON.stringify(JSON.parse(rawNewPostingMetadata)) : "";
 
-            // Prepare the account_update2 operation
             const op = [
                 "account_update2", {
                     account: accountName,
@@ -467,10 +426,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             ];
 
-            // Check if Hive Keychain is being used for signing
-            if (useKeychain) {
+            if (useHiveKeychain) {
                 if (window.hive_keychain) {
-                    window.hive_keychain.requestBroadcast(accountName, [op], "Active", function (result) {
+                    window.hive_keychain.requestBroadcast(accountName, [op], "Active", function(result) {
                         if (result.success) {
                             resultMessageJMet.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
                             resultMessageJMet.style.color = "green";
@@ -484,7 +442,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     resultMessageJMet.style.color = "red";
                 }
             } else {
-                // Sign the transaction using the private key provided
                 const key = dhive.PrivateKey.fromString(privateActiveKey);
                 const broadcastResult = await client.broadcast.sendOperations([op], key);
                 resultMessageJMet.textContent = "Transaction successfully broadcast: " + JSON.stringify(broadcastResult);
@@ -494,12 +451,10 @@ document.addEventListener("DOMContentLoaded", () => {
             resultMessageJMet.textContent = "Error broadcasting transaction: " + error.message;
             resultMessageJMet.style.color = "red";
         } finally {
-        // Explicitly clear the private key for security
         if (privateActiveKeyJMet) privateActiveKeyJMet.value = "";
         }
     }
 
-    // Add event listeners to the buttons (only if elements exists)
     if (loadJsonMetadataButton) {
         loadJsonMetadataButton.addEventListener("click", loadJsonMetadata);
     }
@@ -508,22 +463,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /*
-    // GOVERNANCE PROXY TOOL EXCLUSIVE CODE
-    */
-    // Function to toggle visibility of the private key input field
     function togglePrivateKeyInputVisibilityGov() {
         if (useHiveKeychainGov.checked) {
-            privateKeyLabelGov.style.display = "none"; // Hide the label
-            privateActiveKeyGov.style.display = "none"; // Hide the input field
-            privateActiveKeyGov.value = ""; // Clear the private key input field
+            privateActiveKeyGovContainer.style.display = "none";
+            privateActiveKeyGov.value = "";
         } else {
-            privateKeyLabelGov.style.display = "block"; // Show the label
-            privateActiveKeyGov.style.display = "block"; // Show the input field
+            privateActiveKeyGovContainer.style.display = "block";
         }
     }
 
-    // Function to validate the Governance Proxy Tool fields
     function validateGovernanceProxyTool() {
         if (!accountNameGov || !proxyAccountGov || !submitButtonGov) return;
 
@@ -532,40 +480,32 @@ document.addEventListener("DOMContentLoaded", () => {
         const privateActiveKey = privateActiveKeyGov.value.trim();
         const useHiveKeychain = useHiveKeychainGov.checked;
 
-        // Check if the accountName is valid
         const isValidAccount = validateAccountNameStructure(accountName);
 
-        // Check if the proxyAccount is valid or empty
         const isValidProxyAccount = proxyAccount === "" || validateAccountNameStructure(proxyAccount);
 
         const areAccountsDifferentGov = accountName !== proxyAccount;
 
-        // Enable the submit button only if all conditions are met
         if (isValidAccount && isValidProxyAccount && areAccountsDifferentGov && (privateActiveKey || useHiveKeychain)) {
             submitButtonGov.disabled = false;
-            submitButtonGov.style.backgroundColor = "green"; // Change to green when enabled
+            submitButtonGov.style.backgroundColor = "green";
         } else {
             submitButtonGov.disabled = true;
-            submitButtonGov.style.backgroundColor = ""; // Reset background color if not enabled
+            submitButtonGov.style.backgroundColor = "";
         }
     }
 
-    // Add event listener for the 'Use Hive Keychain' checkbox
     useHiveKeychainGov.addEventListener("change", togglePrivateKeyInputVisibilityGov);
     useHiveKeychainGov.addEventListener("change", validateGovernanceProxyTool);
 
-    // Add event listeners to the input fields to call validateGovernanceProxyTool
     accountNameGov.addEventListener("input", validateGovernanceProxyTool);
     proxyAccountGov.addEventListener("input", validateGovernanceProxyTool);
     privateActiveKeyGov.addEventListener("input", validateGovernanceProxyTool);
 
-    // Initial check to set the visibility when the page loads
     togglePrivateKeyInputVisibilityGov();
 
-    // Initial validation on page load
     validateGovernanceProxyTool();
 
-    // Submit the transaction
     async function submitTransactionGov() {
         if (!accountNameGov || !proxyAccountGov || !resultMessageGov) return;
 
@@ -579,27 +519,24 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
 
         try {
-            if (useHiveKeychain && window.hive_keychain) {
-                // Sign and broadcast using Hive Keychain
-                window.hive_keychain.requestBroadcast(accountName, [op], "Active", function(result) {
-                    if (result.success) {
-                        resultMessageGov.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
-                        resultMessageGov.style.color = "green";
-                    } else {
-                        resultMessageGov.textContent = "Error broadcasting transaction: " + result.message;
-                        resultMessageGov.style.color = "red";
-                    }
-                });
-            } else {
-                // Sign and broadcast using dhive with private key
-                if (!privateActiveKey) {
-                    resultMessageGov.textContent = "Private key is required when not using Hive Keychain.";
+            if (useHiveKeychain) {
+                if (window.hive_keychain) {
+                    window.hive_keychain.requestBroadcast(accountName, [op], "Active", function(result) {
+                        if (result.success) {
+                            resultMessageGov.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
+                            resultMessageGov.style.color = "green";
+                        } else {
+                            resultMessageGov.textContent = "Error broadcasting transaction: " + result.message;
+                            resultMessageGov.style.color = "red";
+                        }
+                    });
+                } else {
+                    resultMessageGov.textContent = "You need to install Hive Keychain to sign the transaction.";
                     resultMessageGov.style.color = "red";
-                    return;
                 }
+            } else {
                 const key = dhive.PrivateKey.fromString(privateActiveKey);
                 const broadcastResult = await client.broadcast.sendOperations([op], key);
-
                 resultMessageGov.textContent = "Transaction successfully broadcast: " + JSON.stringify(broadcastResult);
                 resultMessageGov.style.color = "green";
             }
@@ -607,32 +544,24 @@ document.addEventListener("DOMContentLoaded", () => {
             resultMessageGov.textContent = "Error broadcasting transaction: " + error.message;
             resultMessageGov.style.color = "red";
         } finally {
-            if (privateActiveKeyGov) privateActiveKeyGov.value = ""; // Clear private key for security
+        if (privateActiveKeyGov) privateActiveKeyGov.value = "";
         }
     }
 
-    // Add event listener to the button (only if element exists)
     if (submitButtonGov) {
         submitButtonGov.addEventListener("click", submitTransactionGov);
     }
 
 
-    /*
-    // ACCOUNT UPDATE TOOL EXCLUSIVE CODE
-    */
-    // Function to toggle visibility of the private key input field
     function togglePrivateKeyInputVisibilityUpd() {
         if (useHiveKeychainUpd.checked) {
-            privateKeyLabelUpd.style.display = "none"; // Hide the label
-            privateActiveKeyUpd.style.display = "none"; // Hide the input field
-            privateActiveKeyUpd.value = ""; // Clear the private key input field
+            privateActiveKeyUpdContainer.style.display = "none";
+            privateActiveKeyUpd.value = "";
         } else {
-            privateKeyLabelUpd.style.display = "block"; // Show the label
-            privateActiveKeyUpd.style.display = "block"; // Show the input field
+            privateActiveKeyUpdContainer.style.display = "block";
         }
     }
 
-    // Validate form and enable/disable submit button
     function validateAccountUpdateTool() {
         if (!accountNameUpd || !newPublicActiveKeyUpd || !newPublicPostingKeyUpd || !newPublicMemoKeyUpd || !submitButtonUpd) return;
 
@@ -643,37 +572,30 @@ document.addEventListener("DOMContentLoaded", () => {
         const privateActiveKey = privateActiveKeyUpd.value.trim();
         const useHiveKeychain = useHiveKeychainUpd.checked;
 
-        // Check that the account's name is valid
         const isAccountNameValid = accountName && validateAccountNameStructure(accountName);
 
-        // Enable the submit button only if all conditions are met
         if (isAccountNameValid && newPublicActiveKey && newPublicPostingKey && newPublicMemoKey && (privateActiveKey || useHiveKeychain)) {
             submitButtonUpd.disabled = false;
-            submitButtonUpd.style.backgroundColor = "green"; // Change to green when enabled
+            submitButtonUpd.style.backgroundColor = "green";
         } else {
             submitButtonUpd.disabled = true;
-            submitButtonUpd.style.backgroundColor = ""; // Reset background color if not enabled
+            submitButtonUpd.style.backgroundColor = "";
         }
     }
 
-    // Add event listener for the 'Use Hive Keychain' checkbox
     useHiveKeychainUpd.addEventListener("change", togglePrivateKeyInputVisibilityUpd);
     useHiveKeychainUpd.addEventListener("change", validateAccountUpdateTool);
 
-    // Add event listeners to the input fields and checkbox
     accountNameUpd.addEventListener("input", validateAccountUpdateTool);
     newPublicActiveKeyUpd.addEventListener("input", validateAccountUpdateTool);
     newPublicPostingKeyUpd.addEventListener("input", validateAccountUpdateTool);
     newPublicMemoKeyUpd.addEventListener("input", validateAccountUpdateTool);
     privateActiveKeyUpd.addEventListener("input", validateAccountUpdateTool);
 
-    // Initial check to set the visibility when the page loads
     togglePrivateKeyInputVisibilityUpd();
 
-    // Initial validation on page load
     validateAccountUpdateTool();
 
-    // Submit the transaction
     async function submitAccountUpdateTransaction() {
         if (!accountNameUpd || !newPublicActiveKeyUpd || !newPublicPostingKeyUpd || !newPublicMemoKeyUpd || !resultMessageUpd) return;
 
@@ -695,27 +617,24 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
 
         try {
-            if (useHiveKeychain && window.hive_keychain) {
-                // Sign and broadcast using Hive Keychain
-                window.hive_keychain.requestBroadcast(accountName, [op], "Active", function(result) {
-                    if (result.success) {
-                        resultMessageUpd.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
-                        resultMessageUpd.style.color = "green";
-                    } else {
-                        resultMessageUpd.textContent = "Error broadcasting transaction: " + result.message;
-                        resultMessageUpd.style.color = "red";
-                    }
-                });
-            } else {
-                // Sign and broadcast using dhive with private key
-                if (!privateActiveKey) {
-                    resultMessageUpd.textContent = "Private key is required when not using Hive Keychain.";
+            if (useHiveKeychain) {
+                if (window.hive_keychain) {
+                    window.hive_keychain.requestBroadcast(accountName, [op], "Active", function(result) {
+                        if (result.success) {
+                            resultMessageUpd.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
+                            resultMessageUpd.style.color = "green";
+                        } else {
+                            resultMessageUpd.textContent = "Error broadcasting transaction: " + result.message;
+                            resultMessageUpd.style.color = "red";
+                        }
+                    });
+                } else {
+                    resultMessageUpd.textContent = "You need to install Hive Keychain to sign the transaction.";
                     resultMessageUpd.style.color = "red";
-                    return;
                 }
+            } else {
                 const key = dhive.PrivateKey.fromString(privateActiveKey);
                 const broadcastResult = await client.broadcast.sendOperations([op], key);
-
                 resultMessageUpd.textContent = "Transaction successfully broadcast: " + JSON.stringify(broadcastResult);
                 resultMessageUpd.style.color = "green";
             }
@@ -723,32 +642,24 @@ document.addEventListener("DOMContentLoaded", () => {
             resultMessageUpd.textContent = "Error broadcasting transaction: " + error.message;
             resultMessageUpd.style.color = "red";
         } finally {
-            if (privateActiveKeyUpd) privateActiveKeyUpd.value = ""; // Clear private key for security
+        if (privateActiveKeyUpd) privateActiveKeyUpd.value = "";
         }
     }
 
-    // Add event listener to the button (only if element exists)
     if (submitButtonUpd) {
         submitButtonUpd.addEventListener("click", submitAccountUpdateTransaction);
     }
 
 
-    /*
-    // REQUEST ACCOUNT RECOVERY TOOL EXCLUSIVE CODE
-    */
-    // Function to toggle visibility of the private key input field
     function togglePrivateKeyInputVisibilityReqRec() {
         if (useHiveKeychainReqRec.checked) {
-            privateKeyLabelReqRec.style.display = "none"; // Hide the label
-            privateActiveKeyReqRec.style.display = "none"; // Hide the input field
-            privateActiveKeyReqRec.value = ""; // Clear the private key input field
+            privateActiveKeyReqRecContainer.style.display = "none";
+            privateActiveKeyReqRec.value = "";
         } else {
-            privateKeyLabelReqRec.style.display = "block"; // Show the label
-            privateActiveKeyReqRec.style.display = "block"; // Show the input field
+            privateActiveKeyReqRecContainer.style.display = "block";
         }
     }
 
-    // Validate form and enable/disable submit button
     function validateRequestRecoveryTool() {
         if (!accountNameReqRec || !accountToBeRecoveredReqRec || !newPublicOwnerKeyReqRec || !submitButtonReqRec) return;
 
@@ -758,38 +669,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const privateActiveKey = privateActiveKeyReqRec.value.trim();
         const useHiveKeychain = useHiveKeychainReqRec.checked;
 
-        // Check that both accounts exist and are not the same
         const isAccountNameValid = accountName && validateAccountNameStructure(accountName);
         const isAccountToBeRecoveredValid = accountToBeRecovered && validateAccountNameStructure(accountToBeRecovered);
         const areAccountsDifferent = accountName !== accountToBeRecovered;
 
-        // Enable the submit button only if all conditions are met
         if (isAccountNameValid && isAccountToBeRecoveredValid && areAccountsDifferent && newPublicOwnerKey && (privateActiveKey || useHiveKeychain)) {
             submitButtonReqRec.disabled = false;
-            submitButtonReqRec.style.backgroundColor = "green"; // Change to green when enabled
+            submitButtonReqRec.style.backgroundColor = "green";
         } else {
             submitButtonReqRec.disabled = true;
-            submitButtonReqRec.style.backgroundColor = ""; // Reset background color if not enabled
+            submitButtonReqRec.style.backgroundColor = "";
         }
     }
 
-    // Add event listener for the 'Use Hive Keychain' checkbox
     useHiveKeychainReqRec.addEventListener("change", togglePrivateKeyInputVisibilityReqRec);
     useHiveKeychainReqRec.addEventListener("change", validateRequestRecoveryTool);
 
-    // Add event listeners to the input fields and checkbox
     accountNameReqRec.addEventListener("input", validateRequestRecoveryTool);
     accountToBeRecoveredReqRec.addEventListener("input", validateRequestRecoveryTool);
     newPublicOwnerKeyReqRec.addEventListener("input", validateRequestRecoveryTool);
     privateActiveKeyReqRec.addEventListener("input", validateRequestRecoveryTool);
 
-    // Initial check to set the visibility when the page loads
     togglePrivateKeyInputVisibilityReqRec();
 
-    // Initial validation on page load
     validateRequestRecoveryTool();
 
-    // Submit the transaction
     async function submitTransactionReqRec() {
         if (!accountNameReqRec || !accountToBeRecoveredReqRec || !newPublicOwnerKeyReqRec || !resultMessageReqRec) return;
 
@@ -815,27 +719,24 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
 
         try {
-            if (useHiveKeychain && window.hive_keychain) {
-                // Sign and broadcast using Hive Keychain
-                window.hive_keychain.requestBroadcast(accountName, [op], "Active", function(result) {
-                    if (result.success) {
-                        resultMessageReqRec.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
-                        resultMessageReqRec.style.color = "green";
-                    } else {
-                        resultMessageReqRec.textContent = "Error broadcasting transaction: " + result.message;
-                        resultMessageReqRec.style.color = "red";
-                    }
-                });
-            } else {
-                // Sign and broadcast using dhive with private key
-                if (!privateActiveKey) {
-                    resultMessageReqRec.textContent = "Private key is required when not using Hive Keychain.";
+            if (useHiveKeychain) {
+                if (window.hive_keychain) {
+                    window.hive_keychain.requestBroadcast(accountName, [op], "Active", function(result) {
+                        if (result.success) {
+                            resultMessageReqRec.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
+                            resultMessageReqRec.style.color = "green";
+                        } else {
+                            resultMessageReqRec.textContent = "Error broadcasting transaction: " + result.message;
+                            resultMessageReqRec.style.color = "red";
+                        }
+                    });
+                } else {
+                    resultMessageReqRec.textContent = "You need to install Hive Keychain to sign the transaction.";
                     resultMessageReqRec.style.color = "red";
-                    return;
                 }
+            } else {
                 const key = dhive.PrivateKey.fromString(privateActiveKey);
                 const broadcastResult = await client.broadcast.sendOperations([op], key);
-
                 resultMessageReqRec.textContent = "Transaction successfully broadcast: " + JSON.stringify(broadcastResult);
                 resultMessageReqRec.style.color = "green";
             }
@@ -843,11 +744,10 @@ document.addEventListener("DOMContentLoaded", () => {
             resultMessageReqRec.textContent = "Error broadcasting transaction: " + error.message;
             resultMessageReqRec.style.color = "red";
         } finally {
-            if (privateActiveKeyReqRec) privateActiveKeyReqRec.value = ""; // Clear private key for security
+        if (privateActiveKeyReqRec) privateActiveKeyReqRec.value = "";
         }
     }
 
-    // Add event listener to the button (only if element exists)
     if (submitButtonReqRec) {
         submitButtonReqRec.addEventListener("click", submitTransactionReqRec);
     }
@@ -855,35 +755,33 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/*
-// Clear inputs for all three tools
-*/
 function clearInputs() {
-    // Edit JSON Metadata Tool
     const accountNameJMet = document.getElementById("accountNameJMet");
     const loadJsonMetadataButton = document.getElementById("loadJsonMetadataButton");
+    const editJsonMetadataContainer = document.getElementById("editJsonMetadataContainer");
     const jsonMetadataEdit = document.getElementById("jsonMetadataEdit");
     const postingJsonMetadataEdit = document.getElementById("postingJsonMetadataEdit");
     const useHiveKeychainJMet = document.getElementById("useHiveKeychainJMet");
+    const privateActiveKeyJMetContainer = document.getElementById("privateActiveKeyJMetContainer");
     const privateActiveKeyJMet = document.getElementById("privateActiveKeyJMet");
     const submitButtonJMet = document.getElementById("submitButtonJMet");
     const resultMessageJMet = document.getElementById("resultMessageJMet");
-    const editJsonMetadataContainer = document.getElementById("editJsonMetadataContainer");
 
     if (accountNameJMet) accountNameJMet.value = "";
     if (loadJsonMetadataButton) loadJsonMetadataButton.disabled = true;
+    if (editJsonMetadataContainer) editJsonMetadataContainer.style.display = "none";
     if (jsonMetadataEdit) jsonMetadataEdit.value = "";
     if (postingJsonMetadataEdit) postingJsonMetadataEdit.value = "";
     if (useHiveKeychainJMet) useHiveKeychainJMet.checked = false;
+    if (privateActiveKeyJMetContainer) privateActiveKeyJMetContainer.style.display = "block";
     if (privateActiveKeyJMet) privateActiveKeyJMet.value = "";
     if (submitButtonJMet) submitButtonJMet.disabled = true;
     if (resultMessageJMet) resultMessageJMet.textContent = "";
-    if (editJsonMetadataContainer) editJsonMetadataContainer.style.display = "none";
 
-    // Governance Proxy Tool
     const accountNameGov = document.getElementById("accountNameGov");
     const proxyAccountGov = document.getElementById("proxyAccountGov");
     const useHiveKeychainGov = document.getElementById("useHiveKeychainGov");
+    const privateActiveKeyGovContainer = document.getElementById("privateActiveKeyGovContainer");
     const privateActiveKeyGov = document.getElementById("privateActiveKeyGov");
     const submitButtonGov = document.getElementById("submitButtonGov");
     const resultMessageGov = document.getElementById("resultMessageGov");
@@ -891,16 +789,17 @@ function clearInputs() {
     if (accountNameGov) accountNameGov.value = "";
     if (proxyAccountGov) proxyAccountGov.value = "";
     if (useHiveKeychainGov) useHiveKeychainGov.checked = false;
+    if (privateActiveKeyGovContainer) privateActiveKeyGovContainer.style.display = "block";
     if (privateActiveKeyGov) privateActiveKeyGov.value = "";
     if (submitButtonGov) submitButtonGov.disabled = true;
     if (resultMessageGov) resultMessageGov.textContent = "";
 
-    // Account Update Tool
     const accountNameUpd = document.getElementById("accountNameUpd");
     const newPublicActiveKeyUpd = document.getElementById("newPublicActiveKeyUpd");
     const newPublicPostingKeyUpd = document.getElementById("newPublicPostingKeyUpd");
     const newPublicMemoKeyUpd = document.getElementById("newPublicMemoKeyUpd");
     const useHiveKeychainUpd = document.getElementById("useHiveKeychainUpd");
+    const privateActiveKeyUpdContainer = document.getElementById("privateActiveKeyUpdContainer");
     const privateActiveKeyUpd = document.getElementById("privateActiveKeyUpd");
     const submitButtonUpd = document.getElementById("submitButtonUpd");
     const resultMessageUpd = document.getElementById("resultMessageUpd");
@@ -910,15 +809,16 @@ function clearInputs() {
     if (newPublicPostingKeyUpd) newPublicPostingKeyUpd.value = "";
     if (newPublicMemoKeyUpd) newPublicMemoKeyUpd.value = "";
     if (useHiveKeychainUpd) useHiveKeychainUpd.checked = false;
+    if (privateActiveKeyUpdContainer) privateActiveKeyUpdContainer.style.display = "block";
     if (privateActiveKeyUpd) privateActiveKeyUpd.value = "";
     if (submitButtonUpd) submitButtonUpd.disabled = true;
     if (resultMessageUpd) resultMessageUpd.textContent = "";
 
-    // Request Recovery Tool
     const accountNameReqRec = document.getElementById("accountNameReqRec");
     const accountToBeRecoveredReqRec = document.getElementById("accountToBeRecoveredReqRec");
     const newPublicOwnerKeyReqRec = document.getElementById("newPublicOwnerKeyReqRec");
     const useHiveKeychainReqRec = document.getElementById("useHiveKeychainReqRec");
+    const privateActiveKeyReqRecContainer = document.getElementById("privateActiveKeyReqRecContainer");
     const privateActiveKeyReqRec = document.getElementById("privateActiveKeyReqRec");
     const submitButtonReqRec = document.getElementById("submitButtonReqRec");
     const resultMessageReqRec = document.getElementById("resultMessageReqRec");
@@ -927,35 +827,29 @@ function clearInputs() {
     if (accountToBeRecoveredReqRec) accountToBeRecoveredReqRec.value = "";
     if (newPublicOwnerKeyReqRec) newPublicOwnerKeyReqRec.value = "";
     if (useHiveKeychainReqRec) useHiveKeychainReqRec.checked = false;
+    if (privateActiveKeyReqRecContainer) privateActiveKeyReqRecContainer.style.display = "block";
     if (privateActiveKeyReqRec) privateActiveKeyReqRec.value = "";
     if (submitButtonReqRec) submitButtonReqRec.disabled = true;
     if (resultMessageReqRec) resultMessageReqRec.textContent = "";
 }
 
 
-/*
-// Function to switch between pages and clear inputs when returning to the main menu
-*/
 function showPage(pageId) {
 
-    // Clear inputs when leaving a subpage (going back to the main menu)
     if (pageId === "mainMenu") {
         if (typeof clearInputs === "function") {
-            clearInputs(); // Clears all fields
+            clearInputs();
         }
     }
 
-    // Hide all pages first
     document.getElementById("mainMenu").style.display = "none";
     document.getElementById("editJsonMetadataTool").style.display = "none";
     document.getElementById("governanceTool").style.display = "none";
     document.getElementById("accountUpdateTool").style.display = "none";
     document.getElementById("requestRecoveryTool").style.display = "none";
 
-    // Show the selected page
     document.getElementById(pageId).style.display = "block";
 }
-
 
 
 
@@ -963,7 +857,6 @@ function showPage(pageId) {
 
 </head>
 <body>
-    <!-- Main Menu -->
     <div id="mainMenu">
     <h1>Transactions Tool</h1>
         <p class="subtitle">• This tool requires internet connectivity, in order to broadcast transactions to the Hive blockchain</p>
@@ -976,10 +869,10 @@ function showPage(pageId) {
         <p class="footer">v. 1.2</p>
     </div>
 
-    <!-- Edit JSON Metadata Tool -->
     <div id="editJsonMetadataTool" class="hidden">
         <h1>Edit Account JSON Metadata</h1>
-        <p class="subtitle">• This allows you to view and edit your account's JSON metadata</p>
+        <p class="subtitle">• This tool allows you to view and edit your account's "JSON metadata" and "posting JSON metadata"</p>
+        <p class="subtitle">• To empty your metadata, you can use null, "", [] or {}</p>
         <div class="form-group">
             <label for="accountNameJMet">Your Hive Account:</label>
             <input type="text" id="accountNameJMet" placeholder="E.g., youraccount">
@@ -988,17 +881,17 @@ function showPage(pageId) {
         <div id="editJsonMetadataContainer" style="display:none;">
             <p>Edit your account's JSON Metadata:</p>
             <div class="form-group mt-3">
-                <textarea class="form-control" id="jsonMetadataEdit" rows="3" placeholder="Enter JSON metadata here..."></textarea>
+                <textarea class="textarea-metadata" id="jsonMetadataEdit" rows="3" placeholder="Enter JSON metadata here..."></textarea>
             </div>
             <p>Edit your account's Posting JSON Metadata:</p>
             <div class="form-group mt-3">
-                <textarea class="form-control" id="postingJsonMetadataEdit" rows="3" placeholder="Enter posting JSON metadata here..."></textarea>
+                <textarea class="textarea-metadata" id="postingJsonMetadataEdit" rows="3" placeholder="Enter posting JSON metadata here..."></textarea>
             </div>
             <div class="checkbox-container">
                 <input type="checkbox" id="useHiveKeychainJMet">
                 <label for="useHiveKeychainJMet">Use Hive Keychain to sign the transaction</label>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="privateActiveKeyJMetContainer">
                 <label for="privateActiveKeyJMet">Your Private Active Key:</label>
                 <input type="password" id="privateActiveKeyJMet" placeholder="Private Active Key (5...)">
             </div>
@@ -1008,7 +901,6 @@ function showPage(pageId) {
         <button class="button" onclick="showPage('mainMenu')">Return to Main Menu</button>
     </div>
 
-    <!-- Governance Proxy Tool -->
     <div id="governanceTool" class="hidden">
         <h1>Change Governance Proxy Account</h1>
         <p class="subtitle">• This will set, change or remove your Hive account's Governance Proxy Account</p>
@@ -1024,7 +916,7 @@ function showPage(pageId) {
                 <label for="useHiveKeychainGov">Use Hive Keychain to sign the transaction</label>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="privateActiveKeyGovContainer">
             <label for="privateActiveKeyGov">Your Private Active Key:</label>
             <input type="password" id="privateActiveKeyGov" placeholder="Private Active Key (5...)">
         </div>
@@ -1033,11 +925,10 @@ function showPage(pageId) {
         <button class="button" onclick="showPage('mainMenu')">Return to Main Menu</button>
     </div>
 
-    <!-- Account Update Tool -->
     <div id="accountUpdateTool" class="hidden">
         <h1>Change Account Keys</h1>
         <p class="subtitle">• This tool can change your Hive account's keys, except the Owner Authority</p>
-         <p class="subtitle">• Before using this tool, you can use my "<a href="https://hassemer-g.github.io/keys/" target="_blank">Key Derivation Tool</a>" to generate a random "Master Password" and derive your new keys</p>
+         <p class="subtitle">• Before using this tool, you can use my <a href="https://hassemer-g.github.io/keys/" target="_blank">Key Derivation Tool</a> to generate a random "Master Password" and derive your new keys</p>
         <div class="form-group">
             <label for="accountNameUpd">Your Hive Account:</label>
             <input type="text" id="accountNameUpd" placeholder="E.g., youraccount">
@@ -1058,7 +949,7 @@ function showPage(pageId) {
                 <label for="useHiveKeychainUpd">Use Hive Keychain to sign the transaction</label>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="privateActiveKeyUpdContainer">
             <label for="privateActiveKeyUpd">Current Private Active Key:</label>
             <input type="password" id="privateActiveKeyUpd" placeholder="Private Active Key (5...)">
         </div>
@@ -1067,7 +958,6 @@ function showPage(pageId) {
         <button class="button" onclick="showPage('mainMenu')">Return to Main Menu</button>
     </div>
 
-    <!-- Request Recovery Tool -->
     <div id="requestRecoveryTool" class="hidden">
         <h1>Request Account Recovery</h1>
         <p class="subtitle">• This operation should be broadcast by the owner of a Recovery Account in order to initiate an account recovery process</p>
@@ -1089,7 +979,7 @@ function showPage(pageId) {
                 <label for="useHiveKeychainReqRec">Use Hive Keychain to sign the transaction</label>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="privateActiveKeyReqRecContainer">
             <label for="privateActiveKeyReqRec">Your Private Active Key:</label>
             <input type="password" id="privateActiveKeyReqRec" placeholder="Private Active Key (5...)">
         </div>
