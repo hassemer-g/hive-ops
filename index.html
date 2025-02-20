@@ -173,6 +173,25 @@
             outline: none; /* Removes the default focus outline */
         }
 
+        #postingJsonMetadataEdit {
+            width: 100%; /* Ensures it takes up full available width */
+            min-height: 100px; /* Ensures the textarea has a minimum height */
+            max-height: 500px; /* Prevents the textarea from growing infinitely */
+            resize: vertical; /* Allows the user to manually resize the textarea vertically */
+            padding: 10px; /* Adds padding inside the textarea */
+            border: 1px solid #ccc; /* Adds a light border around the textarea */
+            border-radius: 5px; /* Rounds the corners of the border */
+            font-size: 14px; /* Improves text readability */
+            box-sizing: border-box; /* Ensures padding and border don't affect the width */
+            transition: border-color 0.3s ease; /* Smooth transition when focused */
+        }
+
+        /* On focus, change the border color */
+        #postingJsonMetadataEdit:focus {
+            border-color: #4CAF50; /* Green border on focus */
+            outline: none; /* Removes the default focus outline */
+        }
+
         /* Add responsive design to limit excessive width on larger screens */
         @media screen and (min-width: 768px) {
             body {
@@ -212,6 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const accountNameJMet = document.getElementById("accountNameJMet");
     const loadJsonMetadataButton = document.getElementById("loadJsonMetadataButton");
     const jsonMetadataEdit = document.getElementById("jsonMetadataEdit");
+    const postingJsonMetadataEdit = document.getElementById("postingJsonMetadataEdit");
     const useHiveKeychainJMet = document.getElementById("useHiveKeychainJMet");
     const privateKeyLabelJMet = document.querySelector('label[for="privateActiveKeyJMet"]'); // Select the label
     const privateActiveKeyJMet = document.getElementById("privateActiveKeyJMet");
@@ -227,6 +247,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const privateActiveKeyGov = document.getElementById("privateActiveKeyGov");
     const submitButtonGov = document.getElementById("submitButtonGov");
     const resultMessageGov = document.getElementById("resultMessageGov");
+
+    // Account Update Tool
+    const accountNameUpd = document.getElementById("accountNameUpd");
+    const newPublicActiveKeyUpd = document.getElementById("newPublicActiveKeyUpd");
+    const newPublicPostingKeyUpd = document.getElementById("newPublicPostingKeyUpd");
+    const newPublicMemoKeyUpd = document.getElementById("newPublicMemoKeyUpd");
+    const useHiveKeychainUpd = document.getElementById("useHiveKeychainUpd");
+    const privateKeyLabelUpd = document.querySelector('label[for="privateActiveKeyUpd"]'); // Select the label
+    const privateActiveKeyUpd = document.getElementById("privateActiveKeyUpd");
+    const submitButtonUpd = document.getElementById("submitButtonUpd");
+    const resultMessageUpd = document.getElementById("resultMessageUpd");
 
     // Request Recovery Tool
     const accountNameReqRec = document.getElementById("accountNameReqRec");
@@ -274,6 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Attach event listeners for real-time validation
     accountNameGov.addEventListener("input", () => validateAccountInput(accountNameGov, submitButtonGov));
     proxyAccountGov.addEventListener("input", () => validateAccountInput(proxyAccountGov, submitButtonGov));
+    accountNameUpd.addEventListener("input", () => validateAccountInput(accountNameUpd, submitButtonUpd));
     accountNameReqRec.addEventListener("input", () => validateAccountInput(accountNameReqRec, submitButtonReqRec));
     accountToBeRecoveredReqRec.addEventListener("input", () => validateAccountInput(accountToBeRecoveredReqRec, submitButtonReqRec));
     accountNameJMet.addEventListener("input", () => {
@@ -345,6 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
     accountNameJMet.addEventListener("input", enableLoadJsonMetadataButton);
     accountNameJMet.addEventListener("input", enableSubmitButtonJMet);
     jsonMetadataEdit.addEventListener("input", enableSubmitButtonJMet);
+    postingJsonMetadataEdit.addEventListener("input", enableSubmitButtonJMet);
     privateActiveKeyJMet.addEventListener("input", enableSubmitButtonJMet);
 
     // Initial check to set the visibility when the page loads
@@ -355,9 +388,15 @@ document.addEventListener("DOMContentLoaded", () => {
     enableSubmitButtonJMet();
 
     // Function to automatically adjust the height of the textarea as content is typed
-    jsonMetadataEdit.addEventListener('input', function () {
-        this.style.height = 'auto'; // Reset height before resizing
-        this.style.height = (this.scrollHeight) + 'px'; // Set the height to the scrollHeight (content height)
+    jsonMetadataEdit.addEventListener("input", function () {
+        this.style.height = "auto"; // Reset height before resizing
+        this.style.height = (this.scrollHeight) + "px"; // Set the height to the scrollHeight (content height)
+    });
+
+    // Function to automatically adjust the height of the textarea as content is typed
+    postingJsonMetadataEdit.addEventListener("input", function () {
+        this.style.height = "auto"; // Reset height before resizing
+        this.style.height = (this.scrollHeight) + "px"; // Set the height to the scrollHeight (content height)
     });
 
     async function loadJsonMetadata() {
@@ -375,93 +414,88 @@ document.addEventListener("DOMContentLoaded", () => {
             if (result && result.length > 0) {
                 const account = result[0];
                 const jsonMetadata = account.json_metadata || null; // Get the current metadata
+                const postingJsonMetadata = account.posting_json_metadata || null; // Get the current posting metadata
 
-                // Populate the textarea with the current JSON metadata
+                // Populate the textareas with the current metadata
                 jsonMetadataEdit.value = jsonMetadata;
+                postingJsonMetadataEdit.value = postingJsonMetadata;
 
                 // Show the editing container
-                editJsonMetadataContainer.style.display = 'block';
+                editJsonMetadataContainer.style.display = "block";
 
             } else {
-                alert("Account not found. Please check the account name.");
+                resultMessageJMet.textContent = "Account not found. Please check the account name.";
+                resultMessageJMet.style.color = "red";
             }
         } catch (error) {
-            alert("Error loading account metadata: " + error.message);
+            resultMessageJMet.textContent = "Error loading account metadata: " + error.message;
+            resultMessageJMet.style.color = "red";
         }
     }
 
     async function submitTransactionJMet() {
         const accountName = accountNameJMet.value.trim();
-        const newMetadata = jsonMetadataEdit.value.trim();
+        const rawNewMetadata = jsonMetadataEdit.value.trim();
+        const rawNewPostingMetadata = postingJsonMetadataEdit.value.trim();
         const privateActiveKey = privateActiveKeyJMet.value.trim(); // Get the private key
         const useKeychain = useHiveKeychainJMet.checked; // Check if Hive Keychain is being used
 
         if (!accountName) {
-            alert("Please enter a valid account name.");
+            resultMessageJMet.textContent = "Please enter a valid account name.";
+            resultMessageJMet.style.color = "red";
             return;
         }
 
         if (!privateActiveKey && !useKeychain) {
-            alert("Please enter a private active key, or use Hive Keychain.");
+            resultMessageJMet.textContent = "Please enter a private active key, or use Hive Keychain.";
+            resultMessageJMet.style.color = "red";
             return;
         }
 
         try {
-            // Fetch current account details to get the current posting_json_metadata
-            const result = await client.database.getAccounts([accountName]);
+            // Prepare the metadatas
+            const formattedJsonMetadata = rawNewMetadata ? JSON.stringify(JSON.parse(rawNewMetadata)) : "";
+            const formattedPostingJsonMetadata = rawNewPostingMetadata ? JSON.stringify(JSON.parse(rawNewPostingMetadata)) : "";
 
-            if (result && result.length > 0) {
-                const account = result[0];
-                const currentPostingMetadata = account.posting_json_metadata || null;
+            // Prepare the account_update2 operation
+            const op = [
+                "account_update2", {
+                    account: accountName,
+                    extensions: [],
+                    json_metadata: formattedJsonMetadata,
+                    posting_json_metadata: formattedPostingJsonMetadata
+                }
+            ];
 
-                // Prepare the json_metadata, default to null if empty input
-                const jsonMetadata = newMetadata ? JSON.stringify(newMetadata) : null;
-
-                // Prepare the account_update2 operation
-                const op = [
-                    'account_update2',
-                    {
-                        account: accountName,
-                        extensions: [],
-                        json_metadata: jsonMetadata,
-                        posting_json_metadata: currentPostingMetadata
-                    }
-                ];
-
-                // Check if Hive Keychain is being used for signing
-                if (useKeychain) {
-                    if (window.hive_keychain) {
-                        window.hive_keychain.requestBroadcast(accountName, [op], 'Active', function (result) {
-                            if (result && result.success) {
-                                resultMessageJMet.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
-                                resultMessageJMet.style.color = "green";
-                            } else {
-                                resultMessageJMet.textContent = "Error: " + result.message;
-                                resultMessageJMet.style.color = "red";
-                            }
-                        });
-                    } else {
-                        alert("You need to install Hive Keychain to sign the transaction.");
-                    }
+            // Check if Hive Keychain is being used for signing
+            if (useKeychain) {
+                if (window.hive_keychain) {
+                    window.hive_keychain.requestBroadcast(accountName, [op], "Active", function (result) {
+                        if (result.success) {
+                            resultMessageJMet.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
+                            resultMessageJMet.style.color = "green";
+                        } else {
+                            resultMessageJMet.textContent = "Error: " + result.message;
+                            resultMessageJMet.style.color = "red";
+                        }
+                    });
                 } else {
-                    // Sign the transaction using the private key provided
-                    const key = dhive.PrivateKey.fromString(privateActiveKey);
-                    const client = new dhive.Client("https://api.hive.blog");
-
-                    const broadcastResult = await client.broadcast.sendOperations([op], key);
-                    resultMessageJMet.textContent = "Transaction successfully broadcast: " + JSON.stringify(broadcastResult);
-                    resultMessageJMet.style.color = "green";
+                    resultMessageJMet.textContent = "You need to install Hive Keychain to sign the transaction.";
+                    resultMessageJMet.style.color = "red";
                 }
             } else {
-                resultMessageJMet.textContent = "Private key is required when not using Hive Keychain.";
-                resultMessageJMet.style.color = "red";
+                // Sign the transaction using the private key provided
+                const key = dhive.PrivateKey.fromString(privateActiveKey);
+                const broadcastResult = await client.broadcast.sendOperations([op], key);
+                resultMessageJMet.textContent = "Transaction successfully broadcast: " + JSON.stringify(broadcastResult);
+                resultMessageJMet.style.color = "green";
             }
         } catch (error) {
             resultMessageJMet.textContent = "Error broadcasting transaction: " + error.message;
             resultMessageJMet.style.color = "red";
         } finally {
-            // Explicitly clear the private key for security
-            if (privateActiveKeyJMet) privateActiveKeyJMet.value = "";
+        // Explicitly clear the private key for security
+        if (privateActiveKeyJMet) privateActiveKeyJMet.value = "";
         }
     }
 
@@ -541,8 +575,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const useHiveKeychain = useHiveKeychainGov.checked;
 
         const op = [
-            "account_witness_proxy",
-            { account: accountName, proxy: proxyAccount || "" },
+            "account_witness_proxy", { account: accountName, proxy: proxyAccount || "" },
         ];
 
         try {
@@ -565,9 +598,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
                 const key = dhive.PrivateKey.fromString(privateActiveKey);
-                const result = await client.broadcast.sendOperations([op], key);
+                const broadcastResult = await client.broadcast.sendOperations([op], key);
 
-                resultMessageGov.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
+                resultMessageGov.textContent = "Transaction successfully broadcast: " + JSON.stringify(broadcastResult);
                 resultMessageGov.style.color = "green";
             }
         } catch (error) {
@@ -581,6 +614,122 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add event listener to the button (only if element exists)
     if (submitButtonGov) {
         submitButtonGov.addEventListener("click", submitTransactionGov);
+    }
+
+
+    /*
+    // ACCOUNT UPDATE TOOL EXCLUSIVE CODE
+    */
+    // Function to toggle visibility of the private key input field
+    function togglePrivateKeyInputVisibilityUpd() {
+        if (useHiveKeychainUpd.checked) {
+            privateKeyLabelUpd.style.display = "none"; // Hide the label
+            privateActiveKeyUpd.style.display = "none"; // Hide the input field
+            privateActiveKeyUpd.value = ""; // Clear the private key input field
+        } else {
+            privateKeyLabelUpd.style.display = "block"; // Show the label
+            privateActiveKeyUpd.style.display = "block"; // Show the input field
+        }
+    }
+
+    // Validate form and enable/disable submit button
+    function validateAccountUpdateTool() {
+        if (!accountNameUpd || !newPublicActiveKeyUpd || !newPublicPostingKeyUpd || !newPublicMemoKeyUpd || !submitButtonUpd) return;
+
+        const accountName = accountNameUpd.value.trim();
+        const newPublicActiveKey = newPublicActiveKeyUpd.value.trim();
+        const newPublicPostingKey = newPublicPostingKeyUpd.value.trim();
+        const newPublicMemoKey = newPublicMemoKeyUpd.value.trim();
+        const privateActiveKey = privateActiveKeyUpd.value.trim();
+        const useHiveKeychain = useHiveKeychainUpd.checked;
+
+        // Check that the account's name is valid
+        const isAccountNameValid = accountName && validateAccountNameStructure(accountName);
+
+        // Enable the submit button only if all conditions are met
+        if (isAccountNameValid && newPublicActiveKey && newPublicPostingKey && newPublicMemoKey && (privateActiveKey || useHiveKeychain)) {
+            submitButtonUpd.disabled = false;
+            submitButtonUpd.style.backgroundColor = "green"; // Change to green when enabled
+        } else {
+            submitButtonUpd.disabled = true;
+            submitButtonUpd.style.backgroundColor = ""; // Reset background color if not enabled
+        }
+    }
+
+    // Add event listener for the 'Use Hive Keychain' checkbox
+    useHiveKeychainUpd.addEventListener("change", togglePrivateKeyInputVisibilityUpd);
+    useHiveKeychainUpd.addEventListener("change", validateAccountUpdateTool);
+
+    // Add event listeners to the input fields and checkbox
+    accountNameUpd.addEventListener("input", validateAccountUpdateTool);
+    newPublicActiveKeyUpd.addEventListener("input", validateAccountUpdateTool);
+    newPublicPostingKeyUpd.addEventListener("input", validateAccountUpdateTool);
+    newPublicMemoKeyUpd.addEventListener("input", validateAccountUpdateTool);
+    privateActiveKeyUpd.addEventListener("input", validateAccountUpdateTool);
+
+    // Initial check to set the visibility when the page loads
+    togglePrivateKeyInputVisibilityUpd();
+
+    // Initial validation on page load
+    validateAccountUpdateTool();
+
+    // Submit the transaction
+    async function submitAccountUpdateTransaction() {
+        if (!accountNameUpd || !newPublicActiveKeyUpd || !newPublicPostingKeyUpd || !newPublicMemoKeyUpd || !resultMessageUpd) return;
+
+        const accountName = accountNameUpd.value.trim();
+        const newPublicActiveKey = newPublicActiveKeyUpd.value.trim();
+        const newPublicPostingKey = newPublicPostingKeyUpd.value.trim();
+        const newPublicMemoKey = newPublicMemoKeyUpd.value.trim();
+        const privateActiveKey = privateActiveKeyUpd.value.trim();
+        const useHiveKeychain = useHiveKeychainUpd.checked;
+
+        const op = [
+            "account_update", {
+                account: accountName,
+                active: { weight_threshold: 1, account_auths: [], key_auths: [[newPublicActiveKey, 1]] },
+                posting: { weight_threshold: 1, account_auths: [], key_auths: [[newPublicPostingKey, 1]] },
+                memo_key: newPublicMemoKey,
+                json_metadata: ""
+            }
+        ];
+
+        try {
+            if (useHiveKeychain && window.hive_keychain) {
+                // Sign and broadcast using Hive Keychain
+                window.hive_keychain.requestBroadcast(accountName, [op], "Active", function(result) {
+                    if (result.success) {
+                        resultMessageUpd.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
+                        resultMessageUpd.style.color = "green";
+                    } else {
+                        resultMessageUpd.textContent = "Error broadcasting transaction: " + result.message;
+                        resultMessageUpd.style.color = "red";
+                    }
+                });
+            } else {
+                // Sign and broadcast using dhive with private key
+                if (!privateActiveKey) {
+                    resultMessageUpd.textContent = "Private key is required when not using Hive Keychain.";
+                    resultMessageUpd.style.color = "red";
+                    return;
+                }
+                const key = dhive.PrivateKey.fromString(privateActiveKey);
+                const broadcastResult = await client.broadcast.sendOperations([op], key);
+
+                resultMessageUpd.textContent = "Transaction successfully broadcast: " + JSON.stringify(broadcastResult);
+                resultMessageUpd.style.color = "green";
+            }
+        } catch (error) {
+            resultMessageUpd.textContent = "Error broadcasting transaction: " + error.message;
+            resultMessageUpd.style.color = "red";
+        } finally {
+            if (privateActiveKeyUpd) privateActiveKeyUpd.value = ""; // Clear private key for security
+        }
+    }
+
+    // Add event listener to the button (only if element exists)
+    if (submitButtonUpd) {
+        submitButtonUpd.addEventListener("click", submitAccountUpdateTransaction);
     }
 
 
@@ -662,8 +811,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 extensions: [],
                 new_owner_authority: newOwnerAuthority,
                 recovery_account: accountName
-            },
+            }
         ];
+
         try {
             if (useHiveKeychain && window.hive_keychain) {
                 // Sign and broadcast using Hive Keychain
@@ -684,9 +834,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
                 const key = dhive.PrivateKey.fromString(privateActiveKey);
-                const result = await client.broadcast.sendOperations([op], key);
+                const broadcastResult = await client.broadcast.sendOperations([op], key);
 
-                resultMessageReqRec.textContent = "Transaction successfully broadcast: " + JSON.stringify(result);
+                resultMessageReqRec.textContent = "Transaction successfully broadcast: " + JSON.stringify(broadcastResult);
                 resultMessageReqRec.style.color = "green";
             }
         } catch (error) {
@@ -713,6 +863,7 @@ function clearInputs() {
     const accountNameJMet = document.getElementById("accountNameJMet");
     const loadJsonMetadataButton = document.getElementById("loadJsonMetadataButton");
     const jsonMetadataEdit = document.getElementById("jsonMetadataEdit");
+    const postingJsonMetadataEdit = document.getElementById("postingJsonMetadataEdit");
     const useHiveKeychainJMet = document.getElementById("useHiveKeychainJMet");
     const privateActiveKeyJMet = document.getElementById("privateActiveKeyJMet");
     const submitButtonJMet = document.getElementById("submitButtonJMet");
@@ -722,11 +873,12 @@ function clearInputs() {
     if (accountNameJMet) accountNameJMet.value = "";
     if (loadJsonMetadataButton) loadJsonMetadataButton.disabled = true;
     if (jsonMetadataEdit) jsonMetadataEdit.value = "";
+    if (postingJsonMetadataEdit) postingJsonMetadataEdit.value = "";
     if (useHiveKeychainJMet) useHiveKeychainJMet.checked = false;
     if (privateActiveKeyJMet) privateActiveKeyJMet.value = "";
     if (submitButtonJMet) submitButtonJMet.disabled = true;
     if (resultMessageJMet) resultMessageJMet.textContent = "";
-    if (editJsonMetadataContainer) editJsonMetadataContainer.style.display = 'none';
+    if (editJsonMetadataContainer) editJsonMetadataContainer.style.display = "none";
 
     // Governance Proxy Tool
     const accountNameGov = document.getElementById("accountNameGov");
@@ -742,6 +894,25 @@ function clearInputs() {
     if (privateActiveKeyGov) privateActiveKeyGov.value = "";
     if (submitButtonGov) submitButtonGov.disabled = true;
     if (resultMessageGov) resultMessageGov.textContent = "";
+
+    // Account Update Tool
+    const accountNameUpd = document.getElementById("accountNameUpd");
+    const newPublicActiveKeyUpd = document.getElementById("newPublicActiveKeyUpd");
+    const newPublicPostingKeyUpd = document.getElementById("newPublicPostingKeyUpd");
+    const newPublicMemoKeyUpd = document.getElementById("newPublicMemoKeyUpd");
+    const useHiveKeychainUpd = document.getElementById("useHiveKeychainUpd");
+    const privateActiveKeyUpd = document.getElementById("privateActiveKeyUpd");
+    const submitButtonUpd = document.getElementById("submitButtonUpd");
+    const resultMessageUpd = document.getElementById("resultMessageUpd");
+
+    if (accountNameUpd) accountNameUpd.value = "";
+    if (newPublicActiveKeyUpd) newPublicActiveKeyUpd.value = "";
+    if (newPublicPostingKeyUpd) newPublicPostingKeyUpd.value = "";
+    if (newPublicMemoKeyUpd) newPublicMemoKeyUpd.value = "";
+    if (useHiveKeychainUpd) useHiveKeychainUpd.checked = false;
+    if (privateActiveKeyUpd) privateActiveKeyUpd.value = "";
+    if (submitButtonUpd) submitButtonUpd.disabled = true;
+    if (resultMessageUpd) resultMessageUpd.textContent = "";
 
     // Request Recovery Tool
     const accountNameReqRec = document.getElementById("accountNameReqRec");
@@ -778,11 +949,13 @@ function showPage(pageId) {
     document.getElementById("mainMenu").style.display = "none";
     document.getElementById("editJsonMetadataTool").style.display = "none";
     document.getElementById("governanceTool").style.display = "none";
+    document.getElementById("accountUpdateTool").style.display = "none";
     document.getElementById("requestRecoveryTool").style.display = "none";
 
     // Show the selected page
     document.getElementById(pageId).style.display = "block";
 }
+
 
 
 
@@ -797,6 +970,7 @@ function showPage(pageId) {
         <p class="subtitle">• For operations requiring owner authority, check my <a href="https://hassemer-g.github.io/owner-ops/" target="_blank">Owner Operations Tool</a></p>
         <button class="button" onclick="showPage('editJsonMetadataTool')">Edit Account JSON Metadata</button>
         <button class="button" onclick="showPage('governanceTool')">Change Governance Proxy Account</button>
+        <button class="button" onclick="showPage('accountUpdateTool')">Change Account Keys (other than Owner)</button>
         <button class="button" onclick="showPage('requestRecoveryTool')">Request Account Recovery</button>
         <p class="footer">Made with ❤️ by <a href="https://peakd.com/@hassemer" target="_blank">hassemer</a></p>
         <p class="footer">v. 1.2</p>
@@ -812,10 +986,13 @@ function showPage(pageId) {
         </div>
         <button class="btn btn-primary" type="button" id="loadJsonMetadataButton" disabled style="background-color: grey;">Load Current JSON Metadata</button>
         <div id="editJsonMetadataContainer" style="display:none;">
-            <hr>
-            <p>Edit your account's JSON metadata:</p>
+            <p>Edit your account's JSON Metadata:</p>
             <div class="form-group mt-3">
                 <textarea class="form-control" id="jsonMetadataEdit" rows="3" placeholder="Enter JSON metadata here..."></textarea>
+            </div>
+            <p>Edit your account's Posting JSON Metadata:</p>
+            <div class="form-group mt-3">
+                <textarea class="form-control" id="postingJsonMetadataEdit" rows="3" placeholder="Enter posting JSON metadata here..."></textarea>
             </div>
             <div class="checkbox-container">
                 <input type="checkbox" id="useHiveKeychainJMet">
@@ -853,6 +1030,40 @@ function showPage(pageId) {
         </div>
         <button id="submitButtonGov" disabled>Submit Transaction</button>
         <p id="resultMessageGov"></p>
+        <button class="button" onclick="showPage('mainMenu')">Return to Main Menu</button>
+    </div>
+
+    <!-- Account Update Tool -->
+    <div id="accountUpdateTool" class="hidden">
+        <h1>Change Account Keys</h1>
+        <p class="subtitle">• This tool can change your Hive account's keys, except the Owner Authority</p>
+         <p class="subtitle">• Before using this tool, you can use my "<a href="https://hassemer-g.github.io/keys/" target="_blank">Key Derivation Tool</a>" to generate a random "Master Password" and derive your new keys</p>
+        <div class="form-group">
+            <label for="accountNameUpd">Your Hive Account:</label>
+            <input type="text" id="accountNameUpd" placeholder="E.g., youraccount">
+        </div>
+        <div class="form-group">
+            <label for="newPublicActiveKeyUpd">New Public Active Key:</label>
+            <input type="text" id="newPublicActiveKeyUpd" placeholder="New Public Active Key (STM...)">
+        </div>
+        <div class="form-group">
+            <label for="newPublicPostingKeyUpd">New Public Posting Key:</label>
+            <input type="text" id="newPublicPostingKeyUpd" placeholder="New Public Posting Key (STM...)">
+        </div>
+        <div class="form-group">
+            <label for="newPublicMemoKeyUpd">New Public Memo Key:</label>
+            <input type="text" id="newPublicMemoKeyUpd" placeholder="New Public Memo Key (STM...)">
+            <div class="checkbox-container">
+                <input type="checkbox" id="useHiveKeychainUpd">
+                <label for="useHiveKeychainUpd">Use Hive Keychain to sign the transaction</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="privateActiveKeyUpd">Current Private Active Key:</label>
+            <input type="password" id="privateActiveKeyUpd" placeholder="Private Active Key (5...)">
+        </div>
+        <button id="submitButtonUpd" disabled>Submit Transaction</button>
+        <p id="resultMessageUpd"></p>
         <button class="button" onclick="showPage('mainMenu')">Return to Main Menu</button>
     </div>
 
